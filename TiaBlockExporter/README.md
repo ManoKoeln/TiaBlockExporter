@@ -45,3 +45,11 @@ Aus dem Workspace-Root `VS-Code`:
 ```powershell
 dotnet run --project ".\TiaBlockExporter\TiaBlockExporter.csproj" -- --project "C:\Users\Etteplan\Documents\Automation\TBMA_VP2_6\TBMA_VP2_6.ap19" --output "C:\Users\Etteplan\Documents\Automation\TBMA_VP2_6\ProgramBlocksExport.xml" --with-ui
 ```
+
+## Known Issues
+
+- Die PLC-Liste zeigt nur PLCs mit erkannter Programmstruktur; reine HMI-/Visualisierungsgeräte werden nicht exportiert.
+- Je nach Projektgröße kann das Laden der PLCs und der Export länger dauern; der Fortschrittsbalken ist aktuell ein Aktivitätsindikator (keine Prozentanzeige).
+- Bei mehreren installierten TIA-Versionen kann ohne explizit gesetzte Umgebungsvariable `TIA_PUBLIC_API_DIR` eine unpassende Openness-Version verwendet werden.
+- Einzelne Bausteine können wegen Zugriffsrechten, Schutz oder projektspezifischen Einstellungen fehlschlagen; Details stehen in `ErrorLog_<PLC>.txt`.
+- Fehlende TIA-Produkte in der aktiven Version (z. B. WinCC Professional) verhindern das Öffnen des Projekts.
