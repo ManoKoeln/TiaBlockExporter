@@ -1,0 +1,8 @@
+# Build output
+**/bin/
+**/obj/
+
+# User/IDE files
+*.user
+*.suo
+.vs/
