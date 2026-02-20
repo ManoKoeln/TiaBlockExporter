@@ -22,6 +22,12 @@ dotnet build
 
 ## Ausführung
 
+Ohne Parameter startet eine Bedienoberfläche, in der das TIA-Projekt ausgewählt wird. Danach werden die gefundenen PLCs mit Programmstruktur geladen, eine PLC ausgewählt und der Export gestartet. Die Dateien werden automatisch im Projektordner abgelegt und enthalten den PLC-Namen im Dateinamen (z. B. `ProgramBlocksExport_PLCH-1.xml`, `ErrorLog_PLCH-1.txt`).
+
+```powershell
+dotnet run
+```
+
 Aus dem Projektordner `TiaBlockExporter`:
 
 ```powershell
