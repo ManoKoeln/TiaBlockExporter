@@ -5,20 +5,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <TiaPublicApiDir Condition="'$(TIA_PUBLIC_API_DIR)' != ''">$(TIA_PUBLIC_API_DIR)</TiaPublicApiDir>
+    <TiaPublicApiDir Condition="'$(TiaPublicApiDir)' == '' and Exists('C:\Program Files\Siemens\Automation\Portal V17\PublicAPI\V17\Siemens.Engineering.dll')">C:\Program Files\Siemens\Automation\Portal V17\PublicAPI\V17</TiaPublicApiDir>
+    <TiaPublicApiDir Condition="'$(TiaPublicApiDir)' == '' and Exists('C:\Program Files\Siemens\Automation\Portal V18\PublicAPI\V18\Siemens.Engineering.dll')">C:\Program Files\Siemens\Automation\Portal V18\PublicAPI\V18</TiaPublicApiDir>
+    <TiaPublicApiDir Condition="'$(TiaPublicApiDir)' == '' and Exists('C:\Program Files\Siemens\Automation\Portal V19\PublicAPI\V19\Siemens.Engineering.dll')">C:\Program Files\Siemens\Automation\Portal V19\PublicAPI\V19</TiaPublicApiDir>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Siemens.Engineering" Condition="Exists('$(TIA_PUBLIC_API_DIR)\\Siemens.Engineering.dll')">
-      <HintPath>$(TIA_PUBLIC_API_DIR)\Siemens.Engineering.dll</HintPath>
+    <Reference Include="Siemens.Engineering" Condition="Exists('$(TiaPublicApiDir)\\Siemens.Engineering.dll')">
+      <HintPath>$(TiaPublicApiDir)\Siemens.Engineering.dll</HintPath>
       <Private>true</Private>
     </Reference>
-    <Reference Include="Siemens.Engineering.Contract" Condition="Exists('$(TIA_PUBLIC_API_DIR)\\Siemens.Engineering.Contract.dll')">
-      <HintPath>$(TIA_PUBLIC_API_DIR)\Siemens.Engineering.Contract.dll</HintPath>
+    <Reference Include="Siemens.Engineering.Contract" Condition="Exists('$(TiaPublicApiDir)\\Siemens.Engineering.Contract.dll')">
+      <HintPath>$(TiaPublicApiDir)\Siemens.Engineering.Contract.dll</HintPath>
       <Private>true</Private>
     </Reference>
   </ItemGroup>
 
   <Target Name="CheckTiaReference" BeforeTargets="Build">
-    <Error Condition="!Exists('$(TIA_PUBLIC_API_DIR)\\Siemens.Engineering.dll')" Text="TIA Openness DLL nicht gefunden. Setze die Umgebungsvariable TIA_PUBLIC_API_DIR auf den PublicAPI-Ordner deiner TIA-Installation (z.B. C:\\Program Files\\Siemens\\Automation\\Portal V19\\PublicAPI\\V19)." />
+    <Error Condition="!Exists('$(TiaPublicApiDir)\\Siemens.Engineering.dll')" Text="TIA Openness DLL nicht gefunden. Setze die Umgebungsvariable TIA_PUBLIC_API_DIR oder installiere TIA PublicAPI (z. B. C:\\Program Files\\Siemens\\Automation\\Portal V19\\PublicAPI\\V19). Aktueller TiaPublicApiDir='$(TiaPublicApiDir)', TIA_PUBLIC_API_DIR='$(TIA_PUBLIC_API_DIR)'." />
   </Target>
 </Project>
